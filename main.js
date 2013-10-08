@@ -1,6 +1,10 @@
 // Copy the cloud module in your cloud folder
 var ig = require('cloud/instagram-v1-1.0.js');
+
+// Paste your client_id here
 ig.initialize('CLIENT_ID');
+
+// Paste your access_token here if needed
 ig.setAccessToken('ACCESS_TOKEN');
 
 Parse.Cloud.define('searchTag', function(request, response) {
