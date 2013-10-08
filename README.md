@@ -29,7 +29,7 @@ Methods
 -------
 
 This is the list of methods available in the module and their correspondent Instagram API endpoint.
-You can find examples of cloud clode calling these functions in the main.js file.
+You can find examples of cloud code calling these functions in the main.js file.
 
 <table>
     <tr>
