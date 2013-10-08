@@ -29,6 +29,7 @@ Methods
 -------
 
 This is the list of methods available in the module and their correspondent Instagram API endpoint.
+You can find examples of cloud clode calling these functions in the main.js file.
 
 <table>
     <tr>
@@ -107,5 +108,3 @@ This is the list of methods available in the module and their correspondent Inst
         <td>Use this method for pagination.</td>
     </tr>
 </table>
-
-You can find examples of cloud clode calling these functions in the main.js file.
