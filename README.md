@@ -68,11 +68,6 @@ You can find examples of cloud code calling these functions in the main.js file.
         <td></td>
     </tr>
     <tr>
-        <td>searchUser(params, options)</td>
-        <td>/users/search</td>
-        <td></td>
-    </tr>
-    <tr>
         <td>getPopularMedia(params, options)</td>
         <td>/media/popular</td>
         <td></td>
