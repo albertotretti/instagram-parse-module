@@ -5,17 +5,17 @@ A Parse cloud module for the Instagram API.
 
 To use this module you need to register as developer on Instagram and obtain a client_id here: http://instagram.com/developer/. The site contains the API documentation and other important information, such as usage terms, API throttling, and how to authenticate users.
 
+Installation
+------------
+
+Simply copy the module (e.g. `instagram-v1-1.0.js`) into your Cloud Code Directory by placing it in the `cloud` directory.
+
 To use the module in your Cloud Code functions, start by requiring it and initializing it with your credentials:
 
 ```
 var ig = require('cloud/instagram-v1-1.0.js');
 ig.initialize('YOUR_CLIENT_ID');
 ```
-
-Installation
-------------
-
-Simply copy the module (e.g. `instagram-v1-1.0.js`) into your Cloud Code Directory by placing it in the `cloud` directory.
 
 Access Token
 ------------
