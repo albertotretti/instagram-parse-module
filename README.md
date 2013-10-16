@@ -12,6 +12,11 @@ var ig = require('cloud/instagram-v1-1.0.js');
 ig.initialize('YOUR_CLIENT_ID');
 ```
 
+Installation
+------------
+
+Simply copy the module (e.g. `instagram-v1-1.0.js`) into your Cloud Code Directory by placing it in the `cloud` directory.
+
 Access Token
 ------------
 
