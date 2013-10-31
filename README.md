@@ -63,8 +63,8 @@ You can find examples of cloud code calling these functions in the main.js file.
         <td></td>
     </tr>
     <tr>
-        <td>getTag(tagID, params, options)</td>
-        <td>/users/TAG_ID</td>
+        <td>getTag(tagName, params, options)</td>
+        <td>/users/TAG_NAME</td>
         <td></td>
     </tr>
     <tr>
@@ -83,8 +83,8 @@ You can find examples of cloud code calling these functions in the main.js file.
         <td>Requires an access_token</td>
     </tr>
     <tr>
-        <td>getRecentMediaByTag(tagID, params, options)</td>
-        <td>/tags/TAG_ID/media/recent/</td>
+        <td>getRecentMediaByTag(tagName, params, options)</td>
+        <td>/tags/TAG_NAME/media/recent/</td>
         <td></td>
     </tr>
     <tr>
