@@ -1,417 +1,148 @@
-var _apiUrl = 'https://api.instagram.com/v1/';
-var _clientID = '';
-var _accessToken = '';
+/**
+ * Instagram Cloud Module
+ * @name Instagram
+ *
+ * Cloud Module for using Instagram API.
+ *
+ * To use this Cloud Module in Cloud Code, start by requiring
+ * the <code>mailgun</code> module and initializing it using your
+ * Mailgun domain name and api key.
+ *
+ * <pre>var Instagram = require('cloud/instagram-v1-1.0.js');
+ * Instagram.initialize('clientId');</pre>
+ *
+ */
 
-exports.initialize = function(clientID) {
-  _clientID = clientID;
-  return this;
-};
+(function() {
 
-exports.setAccessToken = function(accessToken) {
-  _accessToken = accessToken;
-  return this; // Not sure this is needed.
-};
+  var _apiUrl = 'https://api.instagram.com/v1/';
+  var _clientID = '';
+  var _accessToken = '';
 
-exports.searchTag = function(params, options) {
-  var promise;
-  if (Parse.Promise) {
-    promise = new Parse.Promise();
-  } else {
-    promise = {
-      resolve: function() {},
-      reject: function() {}
-    };
-  }
+  module.exports = {
 
-  params.client_id = _clientID;
-
-  Parse.Cloud.httpRequest({
-    url: _apiUrl + "tags/search",
-    params: params,
-    success: function(httpResponse) {
-      if (options && options.success) {
-        options.success(httpResponse);
-      }
-      promise.resolve(httpResponse);
+    initialize: function(clientID) {
+      _clientID = clientID;
     },
-    error: function(httpResponse) {
-      if (options && options.error) {
-        options.error(httpResponse);
-      }
-      promise.reject(httpResponse);
-    }
-  });
 
-  return promise;
-};
-
-exports.searchUser = function(params, options) {
-  var promise;
-  if (Parse.Promise) {
-    promise = new Parse.Promise();
-  } else {
-    promise = {
-      resolve: function() {},
-      reject: function() {}
-    };
-  }
-
-  params.client_id = _clientID;
-  Parse.Cloud.httpRequest({
-    url: _apiUrl + "users/search",
-    params: params,
-    success: function(httpResponse) {
-      if (options && options.success) {
-        options.success(httpResponse);
-      }
-      promise.resolve(httpResponse);
+    setAccessToken: function(accessToken) {
+      _accessToken = accessToken;
     },
-    error: function(httpResponse) {
-      if (options && options.error) {
-        options.error(httpResponse);
-      }
-      promise.reject(httpResponse);
-    }
-  });
-  return promise;
-};
 
-exports.searchLocation = function(params, options) {
-  var promise;
-  if (Parse.Promise) {
-    promise = new Parse.Promise();
-  } else {
-    promise = {
-      resolve: function() {},
-      reject: function() {}
-    };
-  }
+    searchTag: function(params) {
+      params.client_id = _clientID;
 
-  params.client_id = _clientID;
-  Parse.Cloud.httpRequest({
-    url: _apiUrl + "locations/search",
-    params: params,
-    success: function(httpResponse) {
-      if (options && options.success) {
-        options.success(httpResponse);
-      }
-      promise.resolve(httpResponse);
+      return Parse.Cloud.httpRequest({
+        url: _apiUrl + "tags/search",
+        params: params
+      });
     },
-    error: function(httpResponse) {
-      if (options && options.error) {
-        options.error(httpResponse);
-      }
-      promise.reject(httpResponse);
-    }
-  });
-  return promise;
-};
 
-exports.getTag = function(tag, params, options) {
-  var promise;
-  if (Parse.Promise) {
-    promise = new Parse.Promise();
-  } else {
-    promise = {
-      resolve: function() {},
-      reject: function() {}
-    };
-  }
+    searchUser: function(params) {
+      params.client_id = _clientID;
 
-  params.client_id = _clientID;
-  Parse.Cloud.httpRequest({
-    url: _apiUrl + "tags/" + tag,
-    params: params,
-    success: function(httpResponse) {
-      if (options && options.success) {
-        options.success(httpResponse);
-      }
-      promise.resolve(httpResponse);
+      return Parse.Cloud.httpRequest({
+        url: _apiUrl + "users/search",
+        params: params
+      });
     },
-    error: function(httpResponse) {
-      if (options && options.error) {
-        options.error(httpResponse);
-      }
-      promise.reject(httpResponse);
-    }
-  });
-  return promise;
-};
 
-exports.getUser = function(user, params, options) {
-  var promise;
-  if (Parse.Promise) {
-    promise = new Parse.Promise();
-  } else {
-    promise = {
-      resolve: function() {},
-      reject: function() {}
-    };
-  }
+    searchLocation: function(params) {
+      params.client_id = _clientID;
 
-  params.client_id = _clientID;
-  Parse.Cloud.httpRequest({
-    url: _apiUrl + "users/" + user,
-    params: params,
-    success: function(httpResponse) {
-      if (options && options.success) {
-        options.success(httpResponse);
-      }
-      promise.resolve(httpResponse);
+      return Parse.Cloud.httpRequest({
+        url: _apiUrl + "locations/search",
+        params: params
+      });
     },
-    error: function(httpResponse) {
-      if (options && options.error) {
-        options.error(httpResponse);
-      }
-      promise.reject(httpResponse);
-    }
-  });
-  return promise;
-};
 
-exports.getLocation = function(location, params, options) {
-  var promise;
-  if (Parse.Promise) {
-    promise = new Parse.Promise();
-  } else {
-    promise = {
-      resolve: function() {},
-      reject: function() {}
-    };
-  }
+    getTag: function(tag, params) {
+      params.client_id = _clientID;
 
-  params.client_id = _clientID;
-  Parse.Cloud.httpRequest({
-    url: _apiUrl + "locations/" + location,
-    params: params,
-    success: function(httpResponse) {
-      if (options && options.success) {
-        options.success(httpResponse);
-      }
-      promise.resolve(httpResponse);
+      return Parse.Cloud.httpRequest({
+        url: _apiUrl + "tags/" + tag,
+        params: params
+      });
     },
-    error: function(httpResponse) {
-      if (options && options.error) {
-        options.error(httpResponse);
-      }
-      promise.reject(httpResponse);
-    }
-  });
-  return promise;
-};
 
-exports.getPopularMedia = function(params, options) {
-  var promise;
-  if (Parse.Promise) {
-    promise = new Parse.Promise();
-  } else {
-    promise = {
-      resolve: function() {},
-      reject: function() {}
-    };
-  }
+    getUser: function(user, params) {
+      params.client_id = _clientID;
 
-  params.client_id = _clientID;
-  Parse.Cloud.httpRequest({
-    url: _apiUrl + "media/popular",
-    params: params,
-    success: function(httpResponse) {
-      if (options && options.success) {
-        options.success(httpResponse);
-      }
-      promise.resolve(httpResponse);
+      return Parse.Cloud.httpRequest({
+        url: _apiUrl + "users/" + user,
+        params: params
+      });
     },
-    error: function(httpResponse) {
-      if (options && options.error) {
-        options.error(httpResponse);
-      }
-      promise.reject(httpResponse);
-    }
-  });
-  return promise;
-};
 
-exports.getRecentMediaByTag = function(tag, params, options) {
-  var promise;
-  if (Parse.Promise) {
-    promise = new Parse.Promise();
-  } else {
-    promise = {
-      resolve: function() {},
-      reject: function() {}
-    };
-  }
+    getLocation: function(location, params) {
+      params.client_id = _clientID;
 
-  params.client_id = _clientID;
-  Parse.Cloud.httpRequest({
-    url: _apiUrl + "tags/" + tag + "/media/recent",
-    params: params,
-    success: function(httpResponse) {
-      if (options && options.success) {
-        options.success(httpResponse);
-      }
-      promise.resolve(httpResponse);
+      return Parse.Cloud.httpRequest({
+        url: _apiUrl + "locations/" + location,
+        params: params
+      });
     },
-    error: function(httpResponse) {
-      if (options && options.error) {
-        options.error(httpResponse);
-      }
-      promise.reject(httpResponse);
-    }
-  });
-  return promise;
-};
 
-exports.getRecentMediaByUser = function(user, params, options) {
-  var promise;
-  if (Parse.Promise) {
-    promise = new Parse.Promise();
-  } else {
-    promise = {
-      resolve: function() {},
-      reject: function() {}
-    };
-  }
+    getPopularMedia: function(params) {
+      params.client_id = _clientID;
 
-  params.access_token = _accessToken;
-  Parse.Cloud.httpRequest({
-    url: _apiUrl + "users/" + user + "/media/recent",
-    params: params,
-    success: function(httpResponse) {
-      if (options && options.success) {
-        options.success(httpResponse);
-      }
-      promise.resolve(httpResponse);
+      return Parse.Cloud.httpRequest({
+        url: _apiUrl + "media/popular",
+        params: params
+      });
     },
-    error: function(httpResponse) {
-      if (options && options.error) {
-        options.error(httpResponse);
-      }
-      promise.reject(httpResponse);
-    }
-  });
-  return promise;
-};
 
-exports.getRecentMediaByLocation = function(location, params, options) {
-  var promise;
-  if (Parse.Promise) {
-    promise = new Parse.Promise();
-  } else {
-    promise = {
-      resolve: function() {},
-      reject: function() {}
-    };
-  }
+    getRecentMediaByTag: function(tag, params) {
+      params.client_id = _clientID;
 
-  params.client_id = _clientID;
-  Parse.Cloud.httpRequest({
-    url: _apiUrl + "locations/" + location + "/media/recent",
-    params: params,
-    success: function(httpResponse) {
-      if (options && options.success) {
-        options.success(httpResponse);
-      }
-      promise.resolve(httpResponse);
+      return Parse.Cloud.httpRequest({
+        url: _apiUrl + "tags/" + tag + "/media/recent",
+        params: params
+      });
     },
-    error: function(httpResponse) {
-      if (options && options.error) {
-        options.error(httpResponse);
-      }
-      promise.reject(httpResponse);
-    }
-  });
-  return promise;
-};
 
-exports.getSelfFeed = function(params, options) {
-  var promise;
-  if (Parse.Promise) {
-    promise = new Parse.Promise();
-  } else {
-    promise = {
-      resolve: function() {},
-      reject: function() {}
-    };
-  }
+    getRecentMediaByUser: function(user, params) {
+      params.access_token = _accessToken;
 
-  params.access_token = _accessToken;
-
-  Parse.Cloud.httpRequest({
-    url: _apiUrl + "users/self/feed",
-    params: params,
-    success: function(httpResponse) {
-      if (options && options.success) {
-        options.success(httpResponse);
-      }
-      promise.resolve(httpResponse);
+      return Parse.Cloud.httpRequest({
+        url: _apiUrl + "users/" + user + "/media/recent",
+        params: params
+      });
     },
-    error: function(httpResponse) {
-      if (options && options.error) {
-        options.error(httpResponse);
-      }
-      promise.reject(httpResponse);
-    }
-  });
-  return promise;
-};
 
-exports.getSelfLikedMedia = function(params, options) {
-  var promise;
-  if (Parse.Promise) {
-    promise = new Parse.Promise();
-  } else {
-    promise = {
-      resolve: function() {},
-      reject: function() {}
-    };
-  }
+    getRecentMediaByLocation: function(location, params) {
+      params.client_id = _clientID;
 
-  params.access_token = _accessToken;
-  Parse.Cloud.httpRequest({
-    url: _apiUrl + "users/self/media/liked",
-    params: params,
-    success: function(httpResponse) {
-      if (options && options.success) {
-        options.success(httpResponse);
-      }
-      promise.resolve(httpResponse);
+      return Parse.Cloud.httpRequest({
+        url: _apiUrl + "locations/" + location + "/media/recent",
+        params: params
+      });
     },
-    error: function(httpResponse) {
-      if (options && options.error) {
-        options.error(httpResponse);
-      }
-      promise.reject(httpResponse);
-    }
-  });
-  return promise;
-};
 
-exports.getNextPage = function(nextUrl, options) {
-  var promise;
-  if (Parse.Promise) {
-    promise = new Parse.Promise();
-  } else {
-    promise = {
-      resolve: function() {},
-      reject: function() {}
-    };
-  }
+    getSelfFeed: function(params) {
+      params.access_token = _accessToken;
 
-  Parse.Cloud.httpRequest({
-    url: nextUrl,
-    success: function(httpResponse) {
-      if (options && options.success) {
-        options.success(httpResponse);
-      }
-      promise.resolve(httpResponse);
+      return Parse.Cloud.httpRequest({
+        url: _apiUrl + "users/self/feed",
+        params: params
+      });
     },
-    error: function(httpResponse) {
-      if (options && options.error) {
-        options.error(httpResponse);
-      }
-      promise.reject(httpResponse);
+
+    getSelfLikedMedia: function(params) {
+      params.access_token = _accessToken;
+
+      return Parse.Cloud.httpRequest({
+        url: _apiUrl + "users/self/media/liked",
+        params: params
+      });
+    },
+
+    getNextPage: function(nextUrl) {
+
+      return Parse.Cloud.httpRequest({
+        url: nextUrl
+      });
     }
-  });
-  return promise;
-}
+
+  }
+})();
