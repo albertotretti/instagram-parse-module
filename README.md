@@ -80,7 +80,7 @@ You can find examples of cloud code calling these functions in the main.js file.
     </tr>
     <tr>
         <td>getTag(tagName, params, options)</td>
-        <td>/users/TAG_NAME</td>
+        <td>/tags/TAG_NAME</td>
         <td></td>
     </tr>
     <tr>
