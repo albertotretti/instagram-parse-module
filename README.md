@@ -28,7 +28,23 @@ Once the user has authenticated your app and you have obtained the token, you ca
 ig.setAccessToken('ACCESS_TOKEN');
 ```
 
-If you set a global access token and then call a method with the access_token parameter, the method will use the parameter value and ignore the global variable.
+Example
+-------
+
+The Instagram Cloud Module uses (and requires use of) JavaScript Promises.
+
+```
+// This example is inside of a Cloud Function:
+ig.searchUser({
+  q: 'jack',
+  count: '3'
+}).then(function(httpResponse) {
+  response.success(httpResponse.data);
+},
+function(error) {
+  response.error(error);
+});
+```
 
 Methods
 -------
