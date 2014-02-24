@@ -19,6 +19,19 @@
   var _clientID = '';
   var _accessToken = '';
 
+  function wrappedHttpRequest(url, params, authenticateRequest) {
+    authenticateRequest = authenticateRequest || false;
+    if (authenticateRequest) {
+      params.access_token = _accessToken;
+    } else {
+      params.client_id = _clientID;
+    }
+    return Parse.Cloud.httpRequest({
+        url: url,
+        params: params
+      });
+  }
+
   module.exports = {
 
     initialize: function(clientID) {
@@ -30,118 +43,55 @@
     },
 
     searchTag: function(params) {
-      params.client_id = _clientID;
-
-      return Parse.Cloud.httpRequest({
-        url: _apiUrl + "tags/search",
-        params: params
-      });
+      return wrappedHttpRequest(_apiUrl + "tags/search", params);
     },
 
     searchUser: function(params) {
-      params.client_id = _clientID;
-
-      return Parse.Cloud.httpRequest({
-        url: _apiUrl + "users/search",
-        params: params
-      });
+      return wrappedHttpRequest(_apiUrl + "users/search", params);
     },
 
     searchLocation: function(params) {
-      params.client_id = _clientID;
-
-      return Parse.Cloud.httpRequest({
-        url: _apiUrl + "locations/search",
-        params: params
-      });
+      return wrappedHttpRequest(_apiUrl + "locations/search", params);
     },
 
     getTag: function(tag, params) {
-      params.client_id = _clientID;
-
-      return Parse.Cloud.httpRequest({
-        url: _apiUrl + "tags/" + tag,
-        params: params
-      });
+      return wrappedHttpRequest(_apiUrl + "tags/" + tag, params);
     },
 
     getUser: function(user, params) {
-      params.client_id = _clientID;
-
-      return Parse.Cloud.httpRequest({
-        url: _apiUrl + "users/" + user,
-        params: params
-      });
+      return wrappedHttpRequest(_apiUrl + "users/" + user, params);
     },
 
     getLocation: function(location, params) {
-      params.client_id = _clientID;
-
-      return Parse.Cloud.httpRequest({
-        url: _apiUrl + "locations/" + location,
-        params: params
-      });
+      return wrappedHttpRequest(_apiUrl + "locations/" + location, params);
     },
 
     getPopularMedia: function(params) {
-      params.client_id = _clientID;
-
-      return Parse.Cloud.httpRequest({
-        url: _apiUrl + "media/popular",
-        params: params
-      });
+      return wrappedHttpRequest(_apiUrl + "media/popular", params);
     },
 
     getRecentMediaByTag: function(tag, params) {
-      params.client_id = _clientID;
-
-      return Parse.Cloud.httpRequest({
-        url: _apiUrl + "tags/" + tag + "/media/recent",
-        params: params
-      });
+      return wrappedHttpRequest(_apiUrl + "tags/" + tag + "/media/recent", params);
     },
 
     getRecentMediaByUser: function(user, params) {
-      params.access_token = _accessToken;
-
-      return Parse.Cloud.httpRequest({
-        url: _apiUrl + "users/" + user + "/media/recent",
-        params: params
-      });
+      return wrappedHttpRequest(_apiUrl + "users/" + user + "/media/recent", params, true);
     },
 
     getRecentMediaByLocation: function(location, params) {
-      params.client_id = _clientID;
-
-      return Parse.Cloud.httpRequest({
-        url: _apiUrl + "locations/" + location + "/media/recent",
-        params: params
-      });
+      return wrappedHttpRequest(_apiUrl + "locations/" + location + "/media/recent", params);
     },
 
     getSelfFeed: function(params) {
-      params.access_token = _accessToken;
-
-      return Parse.Cloud.httpRequest({
-        url: _apiUrl + "users/self/feed",
-        params: params
-      });
+      return wrappedHttpRequest(_apiUrl + "users/self/feed", params, true);
     },
 
     getSelfLikedMedia: function(params) {
-      params.access_token = _accessToken;
-
-      return Parse.Cloud.httpRequest({
-        url: _apiUrl + "users/self/media/liked",
-        params: params
-      });
+      return wrappedHttpRequest(_apiUrl + "users/self/media/liked", params, true);
     },
 
     getNextPage: function(nextUrl) {
-
-      return Parse.Cloud.httpRequest({
-        url: nextUrl
-      });
+      return wrappedHttpRequest(nextUrl, {});
     }
 
   }
