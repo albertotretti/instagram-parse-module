@@ -126,7 +126,7 @@ Parse.Cloud.define('getSelfFeed', function(request, response) {
 });
 
 Parse.Cloud.define('getSelfLikedMedia', function(request, response) {
-  ig.getSelfFeed({
+  ig.getSelfLikedMedia({
     count:'1'
   }).then(function(httpResponse) {
     response.success(httpResponse.data);
